@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>This one is for my Varchhu</title>
+
+<style type="text/css">
+@font-face {
+	font-family: digit;
+	src: url('digital-7_mono.ttf') format("truetype");
+}
+</style>
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/garden.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+
+</head>
+
+<body>
+
+<div id="mainDiv">
+	<div id="content">
+		<div id="code">
+			<span class="comments">/**</span><br />
+			<span class="space"/><span class="comments">*codiguito para mamoi</span><br />
+			<span class="space"/><span class="comments">*/</span><br />
+			Holi celes, mi chiquita linda<br />
+			Hace un rato tengo el gusto ya de cononcerte<br />
+			<span class="comments">// Han sido unos cuantos meses ya, no podria ser mas feliz </span><br />
+			Desde ese dia, no ha pasado un minuto sin que domines mis pensamientos y corazon;<br />
+			<span class="comments">// Tu carita linda, tu forma de ser.</span><br />
+			Todo lo que eres lo llevo en el corazon cielo, sea donde este;<br />
+			Conforme a pasado el tiempo;<br />
+			Nuestra conexion se ha vuelto mas fuerte;<br />
+			Mi viaje contigo es lo mejor que me ha ocurrido;<br />
+			Solo puedo desear que dure para siempre;<br />
+			Aun no nos hemos encontrado en pruebas complicadas;<br />
+			<span class="comments">// Tengo la idea que en algun momento si jsjs.</span><br />
+			Pero estoy mas que dispuesto a atravesar lo que sea por seguir estando a tu lado para verte triunfar;<br />
+			<br>
+			<br>
+			Lo que quiero decir es que:<br />
+			Mi sol, mi niña, mi Celes, te voy a amar, para siempre, y te amo con cada gota de energia en mi cuerpo;<br />
+			<br>
+			<br>
+			Hice una playlist con nuestra musiquita, te dejo la playlist de los cuchurrumines, dale al corazoncito<br />
+			<br>
+			<span id="heartspan">
+			<a href="https://open.spotify.com/playlist/6nXJjl27Y1pQsys7QLMxF7?si=19933b83b293488f" target="_blank"><i class="fas fa-heart" id="icon"></i></a>
+			</span>
+		</div>
+		<div id="loveHeart">
+			<canvas id="garden"></canvas>
+			<div id="words">
+				<div id="messages">
+					Para siempre mi cielo
+					<div id="elapseClock"></div>
+				</div>
+				<div id="loveu">
+					Te amo demasiadooo<br/>
+					<div class="signature">- Andresito</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var offsetX = $("#loveHeart").width() / 2;
+var offsetY = $("#loveHeart").height() / 2 - 55;
+var together = new Date();
+together.setFullYear(2016, 8, 5);
+together.setHours(16);
+together.setMinutes(30);
+together.setSeconds(0);
+together.setMilliseconds(0);
+
+if (!document.createElement('canvas').getContext) {
+	var msg = document.createElement("div");
+	msg.id = "errorMsg";
+	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+	document.body.appendChild(msg);
+	$("#code").css("display", "none")
+	$("#copyright").css("position", "absolute");
+	$("#copyright").css("bottom", "10px");
+	document.execCommand("stop");
+} else {
+	setTimeout(function () {
+		startHeartAnimation();
+	}, 5000);
+
+	timeElapse(together);
+	setInterval(function () {
+		timeElapse(together);
+	}, 500);
+
+	adjustCodePosition();
+	$("#code").typewriter();
+}
+</script>
+</body>
+</html>

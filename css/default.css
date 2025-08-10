@@ -19,3 +19,50 @@
 #copyright a{color:#666}
 #icon{font-size: 48px;color: rgb(250, 92, 92);margin: 50 px; align-content: center;}
 #heartspan{align-content: center;text-align: center;margin: 20px;}
+/* Floating action button */
+.fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2000;
+  display: grid;
+  gap: 10px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Main circle button */
+.fab-main {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 0; cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(8px);
+  transition: transform .2s ease, box-shadow .2s ease;
+  font-size: 20px;
+}
+.fab-main:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,.22); }
+
+/* Menu */
+.fab-menu {
+  list-style: none; margin: 0; padding: 8px;
+  display: none; /* shown when .open */
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  box-shadow: 0 16px 32px rgba(0,0,0,.18);
+  min-width: 160px;
+}
+.fab.open .fab-menu { display: block; }
+
+.fab-menu a {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none; padding: 8px 10px; border-radius: 8px;
+  font-size: 14px;
+}
+.fab-menu a:hover { background: rgba(0,0,0,.06); }
+
+/* iOS safe area nudge */
+@supports (padding: max(0px)) {
+  .fab { right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); }
+}

@@ -19,6 +19,33 @@
 </head>
 
 <body>
+<!-- Top glass navbar -->
+<nav class="topnav" aria-label="Love links">
+  <a class="brand" href="#">
+    <i class="fas fa-heart"></i>
+    <span class="brand-text">Nosotros</span>
+  </a>
+
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+  <ul class="nav-links" role="menu">
+    <li role="none">
+      <a role="menuitem" href="https://docs.google.com/document/d/11ZKETegjDiOccuPrBxApuABBQ1uY5K9P7KmQ5RQlVNw/preview" target="_blank" rel="noopener">
+        <i class="fas fa-file-lines"></i> Carta
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://drive.google.com/file/d/1nEUnfbxcU8Oq4KHRehW-aA0pn9-QDT-C/preview" target="_blank" rel="noopener">
+        <i class="fas fa-images"></i> Fotos
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://open.spotify.com/playlist/6nXJjl27Y1pQsys7QLMxF7?si=19933b83b293488f" target="_blank" rel="noopener">
+        <i class="fas fa-music"></i> Playlist
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <div id="mainDiv">
 	<div id="content">
@@ -66,24 +93,7 @@
 		</div>
 	</div>
 </div>
-<!-- seeing if this works as floating action button -->
-<div class="fab" aria-label="Quick actions">
-  <button class="fab-main" aria-expanded="false" aria-controls="fab-menu" aria-label="Open menu">
-    <i class="fa-solid fa-plus"></i>
-  </button>
-  <ul id="fab-menu" class="fab-menu" role="menu">
-    <li role="none">
-      <a role="menuitem" href="https://docs.google.com/document/d/11ZKETegjDiOccuPrBxApuABBQ1uY5K9P7KmQ5RQlVNw/preview" target="_blank" rel="noopener">
-        <i class="fa-regular fa-note-sticky"></i> Carta
-      </a>
-    </li>
-    <li role="none">
-      <a role="menuitem" href="https://drive.google.com/file/d/1nEUnfbxcU8Oq4KHRehW-aA0pn9-QDT-C/preview" target="_blank" rel="noopener">
-        <i class="fa-regular fa-images"></i> Agosto 7
-      </a>
-    </li>
-  </ul>
-</div>
+
 
 <script type="text/javascript">
 var offsetX = $("#loveHeart").width() / 2;
@@ -120,32 +130,23 @@ if (!document.createElement('canvas').getContext) {
 </script>
 
 <script>
-  (function () {
-    var fab = document.querySelector('.fab');
-    var btn = document.querySelector('.fab-main');
-    if (!fab || !btn) return;
+  (function(){
+    var nav = document.querySelector('.topnav');
+    var btn = nav && nav.querySelector('.nav-toggle');
+    if(!nav || !btn) return;
 
-    function closeMenu() {
-      fab.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
+    function closeMenu(){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
     }
-    function openMenu() {
-      fab.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
+    function toggleMenu(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      fab.classList.contains('open') ? closeMenu() : openMenu();
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!fab.contains(e.target)) closeMenu();
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMenu();
-    });
+    btn.addEventListener('click', function(e){ e.stopPropagation(); toggleMenu(); });
+    document.addEventListener('click', function(e){ if(!nav.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
   })();
 </script>
 

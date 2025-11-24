@@ -134,3 +134,70 @@ function adjustCodePosition() {
 function showLoveU() {
 	$('#loveu').fadeIn(3000);
 }
+
+// --- Scavenger hunt logic ---
+$(function() {
+    // change this code to your real date
+    // example: 2 April 2025 -> "02042025"
+    var SECRET_CODE = "02042025";
+
+    var $modal = $("#huntModal");
+    var $btn = $("#startHuntBtn");
+    var $close = $("#huntClose");
+    var $input = $("#huntCodeInput");
+    var $error = $("#huntError");
+    var $submit = $("#huntSubmitBtn");
+
+    function openModal() {
+        $error.text("");
+        $input.val("");
+        $modal.fadeIn(200);
+        $input.focus();
+    }
+
+    function closeModal() {
+        $modal.fadeOut(200);
+    }
+
+    function checkCode() {
+        var value = $input.val().trim();
+        if (value === SECRET_CODE) {
+            // On success: go to the secret Snoopy letter page
+            window.location.href = "secret-letter.html";
+        } else {
+            $error.text("Mmm no, intenta de nuevo mi amorcito 🥺");
+        }
+    }
+
+    if ($btn.length) {
+        $btn.on("click", function() {
+            openModal();
+
+            // If you want to start music here:
+            var audio = document.getElementById("bgMusic");
+            if (audio) {
+                audio.play().catch(function(){ /* ignore autoplay errors */ });
+            }
+        });
+    }
+
+    if ($close.length) {
+        $close.on("click", closeModal);
+    }
+
+    $modal.on("click", function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    if ($submit.length) {
+        $submit.on("click", checkCode);
+    }
+
+    $input.on("keypress", function(e) {
+        if (e.which === 13) { // Enter
+            checkCode();
+        }
+    });
+});

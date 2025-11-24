@@ -62,3 +62,74 @@
 @supports(padding:max(0px)){
   .topnav{ top:max(14px, env(safe-area-inset-top)); }
 }
+
+/* Scavenger Hunt button */
+#scavengerHunt {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.hunt-btn {
+  background: #ff7aa2;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s;
+}
+
+.hunt-btn:hover {
+  transform: translateY(-1px);
+  background: #ff5c8c;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+
+/* Modal overlay */
+.hunt-modal {
+  display: none;          /* hidden by default */
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal box */
+.hunt-modal-content {
+  background: #fff7fb;
+  border-radius: 16px;
+  max-width: 400px;
+  padding: 20px 24px 24px;
+  margin: 10% auto;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  text-align: center;
+  position: relative;
+}
+
+/* Close (X) */
+.hunt-close {
+  position: absolute;
+  right: 14px;
+  top: 8px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Input + error */
+#huntCodeInput {
+  width: 70%;
+  padding: 8px 10px;
+  margin: 10px 0 14px;
+  border-radius: 999px;
+  border: 1px solid #ffb6d6;
+  text-align: center;
+  font-size: 16px;
+}
+
+.hunt-error {
+  color: #e63946;
+  font-size: 13px;
+  min-height: 1em;
+}

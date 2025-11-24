@@ -92,6 +92,35 @@
 			</div>
 		</div>
 	</div>
+				<!-- Scavenger Hunt Button -->
+		<div id="scavengerHunt">
+		<button id="startHuntBtn" class="hunt-btn">
+			💌 Iniciar pequeña misión secreta
+		</button>
+		</div>
+
+		<!-- Scavenger Hunt Modal -->
+		<div id="huntModal" class="hunt-modal">
+		<div class="hunt-modal-content">
+			<span id="huntClose" class="hunt-close">&times;</span>
+			<h2>Tu misión, moi</h2>
+			<p>
+			Hola moi, como parte de su regalo, primero tiene que completar una prueba pequeña ji, ingrese la fecha de la primer vez que nos vimos ji, con formato
+			<strong>DDMMYYYY</strong> (día, mes, año, todo juntito).
+			</p>
+			<input 
+			id="huntCodeInput" 
+			type="text" 
+			maxlength="8" 
+			placeholder="Ejemplo: 02042025"
+			/>
+			<button id="huntSubmitBtn" class="hunt-btn">
+			Abrir carta secreta
+			</button>
+			<p id="huntError" class="hunt-error"></p>
+		</div>
+		</div>
+
 </div>
 
 
@@ -148,6 +177,77 @@ if (!document.createElement('canvas').getContext) {
     document.addEventListener('click', function(e){ if(!nav.contains(e.target)) closeMenu(); });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
   })();
+</script>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+	var modal      = document.getElementById('huntModal');
+	var openBtn    = document.getElementById('startHuntBtn');
+	var closeSpan  = document.getElementById('huntClose');
+	var submitBtn  = document.getElementById('huntSubmitBtn');
+	var input      = document.getElementById('huntCodeInput');
+	var errorLabel = document.getElementById('huntError');
+
+	// DDMMYYYY for August 7, 2025
+	var CORRECT_CODE = '07082025';
+
+	function openModal() {
+		if (!modal) return;
+		modal.style.display = 'flex';
+		errorLabel.textContent = '';
+		input.value = '';
+		input.focus();
+	}
+
+	function closeModal() {
+		if (!modal) return;
+		modal.style.display = 'none';
+	}
+
+	if (openBtn) {
+		openBtn.addEventListener('click', function (e) {
+		e.preventDefault();
+		openModal();
+		});
+	}
+
+	if (closeSpan) {
+		closeSpan.addEventListener('click', function () {
+		closeModal();
+		});
+	}
+
+	// Close when clicking outside the modal content
+	if (modal) {
+		modal.addEventListener('click', function (e) {
+		if (e.target === modal) {
+			closeModal();
+		}
+		});
+	}
+
+	// Close with Escape key
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') {
+		closeModal();
+		}
+	});
+
+	if (submitBtn) {
+		submitBtn.addEventListener('click', function () {
+		var value = (input.value || '').replace(/\D/g, ''); // remove non-digits
+
+		if (value === CORRECT_CODE) {
+			
+			window.location.href = 'secret-letter.html';
+		} else {
+			errorLabel.textContent =
+			'Mmm… creo que esa no es la fecha correcta moi je, Intenta de nuevo.';
+		}
+		});
+	}
+	});
+
 </script>
 
 </body>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Un Mes · Nosotros</title>
+  <link href="css/default.css" rel="stylesheet">
+  <link href="css/album.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar (same glass pill as index.html) -->
+<nav class="topnav" aria-label="Love links">
+  <a class="brand" href="index.html">
+    <i class="fas fa-heart"></i>
+    <span class="brand-text">Nosotros</span>
+  </a>
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <ul class="nav-links" role="menu">
+    <li role="none">
+      <a role="menuitem" href="https://docs.google.com/document/d/11ZKETegjDiOccuPrBxApuABBQ1uY5K9P7KmQ5RQlVNw/preview" target="_blank" rel="noopener">
+        <i class="fa-regular fa-file-lines"></i> Carta
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://drive.google.com/file/d/1nEUnfbxcU8Oq4KHRehW-aA0pn9-QDT-C/preview" target="_blank" rel="noopener">
+        <i class="fas fa-images"></i> Agosto 7
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://open.spotify.com/playlist/6nXJjl27Y1pQsys7QLMxF7?si=19933b83b293488f" target="_blank" rel="noopener">
+        <i class="fas fa-music"></i> Playlist
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="album.html" class="nav-current">
+        <i class="fas fa-camera-retro"></i> Un Mes
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="album-hero">
+  <div class="hero-hearts" aria-hidden="true">♡</div>
+  <h1 class="hero-title">Un mes juntos</h1>
+  <p class="hero-sub">Cada momento contigo es un regalo</p>
+</header>
+
+<!-- ===== Photo Gallery ===== -->
+<section class="gallery-section">
+  <h2 class="section-title">Nuestros momentos</h2>
+  <p class="section-hint">Haz clic en una foto para verla más grande</p>
+
+  <div class="polaroid-grid" id="polaroidGrid">
+
+    <!--
+      CÓMO AGREGAR FOTOS:
+      1. Crea una carpeta "photos/" en la raíz del proyecto.
+      2. Sube tus fotos como photos/1.jpeg, photos/2.jpeg, etc.
+      3. Cambia cada caption por el texto que quieras.
+      Puedes quitar o duplicar bloques .polaroid según cuántas fotos tengas.
+    -->
+
+    <div class="polaroid" style="--rot: -2.5deg" data-index="0">
+      <div class="polaroid-img-wrap">
+        <img src="photos/1.jpeg" alt="Foto 1"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">Un 7 de Agosto</p>
+    </div>
+
+    <div class="polaroid" style="--rot: 1.8deg" data-index="1">
+      <div class="polaroid-img-wrap">
+        <img src="photos/2.jpeg" alt="Foto 2"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">Después de tanto tiempo :), ese dia nunca lo olvidaré</p>
+    </div>
+
+    <div class="polaroid" style="--rot: -1.2deg" data-index="2">
+      <div class="polaroid-img-wrap">
+        <img src="photos/3.jpeg" alt="Foto 3"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">Una peli con mi cielito</p>
+    </div>
+
+    <div class="polaroid" style="--rot: 2.1deg" data-index="3">
+      <div class="polaroid-img-wrap">
+        <img src="photos/4.jpeg" alt="Foto 4"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">tacos de birriahh</p>
+    </div>
+
+    <div class="polaroid" style="--rot: -3deg" data-index="4">
+      <div class="polaroid-img-wrap">
+        <img src="photos/5.jpeg" alt="Foto 5"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">quien te hizo tan bella? no te puedo quitar la mirada</p>
+    </div>
+
+    <div class="polaroid" style="--rot: 1.4deg" data-index="5">
+      <div class="polaroid-img-wrap">
+        <img src="photos/6.jpeg" alt="Foto 6"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">hola cushu hermosa, teamo</p>
+    </div>
+
+    <div class="polaroid" style="--rot: -1.8deg" data-index="6">
+      <div class="polaroid-img-wrap">
+        <img src="photos/7.jpeg" alt="Foto 7"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">Buenos dias amor, te amo mas que ayer</p>
+    </div>
+
+    <div class="polaroid" style="--rot: 2.6deg" data-index="7">
+      <div class="polaroid-img-wrap">
+        <img src="photos/8.jpeg" alt="Foto 8"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">bonito dia para ir al barrio chino</p>
+    </div>
+
+    <div class="polaroid" style="--rot: -0.8deg" data-index="8">
+      <div class="polaroid-img-wrap">
+        <img src="photos/9.jpeg" alt="Foto 9"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">a conocer a mis papás :O no se van a creer la belleza de mi novia</p>
+    </div>
+
+    <div class="polaroid" style="--rot: 3.2deg" data-index="9">
+      <div class="polaroid-img-wrap">
+        <img src="photos/10.PNG" alt="Foto 10"
+             onerror="this.closest('.polaroid').classList.add('empty')">
+        <div class="photo-placeholder" aria-hidden="true">
+          <i class="fas fa-camera-retro"></i>
+        </div>
+      </div>
+      <p class="caption">Una de hoy mismo, porque te amo, cada momento que podemos compartir</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== Lightbox ===== -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar">&times;</button>
+  <button class="lb-prev"  id="lbPrev"  aria-label="Anterior">&#8249;</button>
+  <button class="lb-next"  id="lbNext"  aria-label="Siguiente">&#8250;</button>
+  <div class="lb-inner">
+    <img id="lbImg" src="" alt="">
+    <p  id="lbCaption" class="lb-caption"></p>
+  </div>
+</div>
+
+<!-- ===== Jar of Reasons ===== -->
+<section class="jar-section">
+  <h2 class="section-title">15 razones</h2>
+  <p class="section-hint">Toca el frasco para sacar una nota ♡</p>
+
+  <div class="jar-wrap">
+
+    <!-- Clickable mason jar -->
+    <button class="jar-btn" id="jarBtn" aria-label="Sacar una nota del frasco">
+      <svg class="jar-svg" viewBox="0 0 120 175" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- lid ring -->
+        <rect x="29" y="20" width="62" height="7" rx="3" fill="#d4a0b0"/>
+        <!-- lid cap -->
+        <rect x="33" y="10" width="54" height="12" rx="5" fill="#e8b4c3"/>
+        <!-- neck -->
+        <rect x="34" y="27" width="52" height="13" rx="3" fill="#f2c6d3"/>
+        <!-- jar body -->
+        <rect x="16" y="40" width="88" height="118" rx="12" fill="rgba(255,235,245,0.55)" stroke="#e8b4c3" stroke-width="1.5"/>
+        <!-- glass shine left -->
+        <rect x="24" y="50" width="7" height="70" rx="3.5" fill="rgba(255,255,255,0.45)"/>
+        <!-- hearts inside -->
+        <text x="52" y="82"  font-size="16" fill="#ff7aa2" opacity="0.75">♡</text>
+        <text x="69" y="104" font-size="11" fill="#ff9dbf" opacity="0.65">♡</text>
+        <text x="37" y="110" font-size="13" fill="#ff7aa2" opacity="0.55">♡</text>
+        <text x="63" y="130" font-size="9"  fill="#ffb3cc" opacity="0.70">♡</text>
+        <text x="44" y="98"  font-size="10" fill="#ff9dbf" opacity="0.60">♡</text>
+        <text x="76" y="82"  font-size="8"  fill="#ffcce0" opacity="0.70">♡</text>
+        <text x="40" y="130" font-size="11" fill="#ff9dbf" opacity="0.55">♡</text>
+        <!-- paper note tab peeking out from lid -->
+        <rect x="46" y="23" width="28" height="7" rx="2"
+              fill="rgba(255,248,210,0.9)" stroke="rgba(200,180,100,0.3)" stroke-width="0.5"
+              transform="rotate(-4 60 26)"/>
+      </svg>
+      <span class="jar-hint">toca para sacar una nota</span>
+    </button>
+
+    <!-- Note display area -->
+    <div class="note-area" id="noteArea" aria-live="polite">
+      <div class="note-card" id="noteCard">
+        <span class="note-fold" aria-hidden="true"></span>
+        <p class="note-text" id="noteText"></p>
+        <span class="note-counter" id="noteCounter"></span>
+      </div>
+    </div>
+
+  </div><!-- .jar-wrap -->
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="album-footer">
+  <span>Con todo mi amor ♡ Andresito</span>
+</footer>
+
+<script src="js/jquery.js"></script>
+<script src="js/album.js"></script>
+
+<script>
+  /* Navbar toggle — same pattern as index.html */
+  (function () {
+    var nav = document.querySelector('.topnav');
+    var btn = nav && nav.querySelector('.nav-toggle');
+    if (!nav || !btn) return;
+    function close() { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+    function toggle() { var o = nav.classList.toggle('open'); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); toggle(); });
+    document.addEventListener('click', function (e) { if (!nav.contains(e.target)) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+</script>
+
+</body>
+</html>

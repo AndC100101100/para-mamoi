@@ -1,0 +1,400 @@
+/* =========================================================
+   album.css — styles for album.html (Un Mes page)
+   Keeps default.css untouched.
+   ========================================================= */
+
+/* ── Base ─────────────────────────────────────────────── */
+body {
+  background: rgb(250, 250, 194);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #444;
+}
+
+/* ── Nav tweak: active link ───────────────────────────── */
+.topnav .nav-links .nav-current {
+  background: rgba(255, 122, 162, 0.12);
+  color: #d45a80;
+  font-weight: 600;
+}
+
+/* ── Hero ─────────────────────────────────────────────── */
+.album-hero {
+  text-align: center;
+  padding: 110px 20px 48px;
+  position: relative;
+}
+
+.hero-hearts {
+  font-size: 28px;
+  color: #ff7aa2;
+  letter-spacing: 10px;
+  margin-bottom: 14px;
+  animation: pulse-hearts 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-hearts {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.6; transform: scale(1.08); }
+}
+
+.hero-title {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 700;
+  color: #c0496e;
+  margin: 0 0 10px;
+  letter-spacing: -0.5px;
+}
+
+.hero-sub {
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: #888;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Shared section helpers ───────────────────────────── */
+.section-title {
+  text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #c0496e;
+  margin: 0 0 6px;
+}
+
+.section-hint {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin: 0 0 36px;
+}
+
+/* ── Gallery section ──────────────────────────────────── */
+.gallery-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+
+/* ── Polaroid grid ────────────────────────────────────── */
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 44px 36px;
+  justify-items: center;
+}
+
+/* ── Single polaroid ──────────────────────────────────── */
+.polaroid {
+  background: #fff;
+  padding: 14px 14px 52px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  will-change: transform;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.06);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  z-index: 10;
+}
+
+/* Empty polaroid (photo not found) */
+.polaroid.empty {
+  cursor: default;
+}
+.polaroid.empty:hover {
+  transform: rotate(var(--rot, 0deg));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+}
+
+/* Image wrapper — square crop */
+.polaroid-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f9f0f5;
+  position: relative;
+}
+
+.polaroid-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder icon shown when image is missing */
+.photo-placeholder {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  color: #f0c0d0;
+  font-size: 2.4rem;
+}
+
+.polaroid.empty .photo-placeholder {
+  display: flex;
+}
+
+.polaroid.empty .polaroid-img-wrap img {
+  display: none;
+}
+
+/* Caption strip */
+.caption {
+  text-align: center;
+  margin: 0;
+  padding-top: 10px;
+  font-family: "Segoe UI", cursive, sans-serif;
+  font-size: 13px;
+  color: #888;
+  line-height: 1.3;
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+}
+
+/* ── Lightbox ─────────────────────────────────────────── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lb-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(90vw, 880px);
+  max-height: 85vh;
+}
+
+.lb-inner img {
+  max-width: 100%;
+  max-height: calc(85vh - 60px);
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.lb-caption {
+  color: rgba(255, 255, 255, 0.75);
+  margin: 14px 0 0;
+  font-size: 15px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Close / nav buttons */
+.lb-close,
+.lb-prev,
+.lb-next {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.lb-close {
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+}
+
+.lb-prev,
+.lb-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  font-size: 30px;
+}
+
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+
+.lb-close:hover,
+.lb-prev:hover,
+.lb-next:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ── Jar section ──────────────────────────────────────── */
+.jar-section {
+  padding: 20px 24px 80px;
+  text-align: center;
+}
+
+.jar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* The jar itself is a <button> for accessibility */
+.jar-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  transition: transform 0.15s ease;
+}
+
+.jar-btn:hover .jar-svg {
+  filter: drop-shadow(0 6px 16px rgba(200, 80, 120, 0.25));
+}
+
+.jar-btn:focus-visible {
+  outline: 2px solid #ff7aa2;
+  border-radius: 8px;
+}
+
+.jar-svg {
+  width: 160px;
+  height: auto;
+  transition: filter 0.2s ease;
+}
+
+/* Shake animation triggered by JS */
+.jar-btn.shake {
+  animation: jar-shake 0.45s ease;
+}
+
+@keyframes jar-shake {
+  0%, 100% { transform: rotate(0deg); }
+  20%       { transform: rotate(-6deg); }
+  40%       { transform: rotate(5deg); }
+  60%       { transform: rotate(-4deg); }
+  80%       { transform: rotate(3deg); }
+}
+
+.jar-hint {
+  font-size: 13px;
+  color: #bbb;
+  font-style: italic;
+}
+
+/* ── Note card ────────────────────────────────────────── */
+.note-area {
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+.note-card {
+  background: #fffdf0;
+  border-radius: 6px;
+  padding: 28px 28px 22px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+  position: relative;
+  width: 100%;
+  /* start hidden */
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.note-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Folded top-left corner effect */
+.note-fold {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 22px 22px 0 0;
+  border-color: rgb(250, 250, 194) transparent transparent transparent;
+  border-top-left-radius: 4px;
+}
+
+.note-text {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: #555;
+  line-height: 1.65;
+  margin: 0 0 16px;
+  text-align: center;
+  font-style: italic;
+}
+
+.note-counter {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #ccc;
+  letter-spacing: 0.5px;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+.album-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #bbb;
+  font-style: italic;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 560px) {
+  .polaroid-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 18px;
+  }
+
+  .polaroid {
+    max-width: none;
+    padding: 10px 10px 42px;
+  }
+
+  .lb-prev { left: 6px; }
+  .lb-next { right: 6px; }
+
+  .jar-svg { width: 130px; }
+}
+
+@media (max-width: 360px) {
+  .polaroid-grid {
+    grid-template-columns: 1fr;
+  }
+}

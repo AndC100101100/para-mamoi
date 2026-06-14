@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tres Meses · Nosotros</title>
+  <link href="css/default.css" rel="stylesheet">
+  <link href="css/constellation.css" rel="stylesheet">
+</head>
+<body class="constellation-body">
+
+<!-- Navbar (same glass pill) -->
+<nav class="topnav" aria-label="Love links">
+  <a class="brand" href="index.html">
+    <i class="fas fa-heart"></i>
+    <span class="brand-text">Nosotros</span>
+  </a>
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <ul class="nav-links" role="menu">
+    <li role="none">
+      <a role="menuitem" href="https://docs.google.com/document/d/11ZKETegjDiOccuPrBxApuABBQ1uY5K9P7KmQ5RQlVNw/preview" target="_blank" rel="noopener">
+        <i class="fa-regular fa-file-lines"></i> Carta
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://drive.google.com/file/d/1nEUnfbxcU8Oq4KHRehW-aA0pn9-QDT-C/preview" target="_blank" rel="noopener">
+        <i class="fas fa-images"></i> Agosto 7
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://open.spotify.com/playlist/6nXJjl27Y1pQsys7QLMxF7?si=19933b83b293488f" target="_blank" rel="noopener">
+        <i class="fas fa-music"></i> Playlist
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="album.html">
+        <i class="fas fa-camera-retro"></i> Un Mes
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="tres-meses.html" class="nav-current">
+        <i class="fas fa-star"></i> Tres Meses
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Sky canvas -->
+<canvas id="sky" aria-label="Cielo estrellado interactivo"></canvas>
+
+<!-- Hero copy floating over the sky -->
+<header class="sky-hero">
+  <h1 class="sky-title">Tres meses de nosotros</h1>
+  <p class="sky-sub">Cada estrellita guarda un recuerdo, moi · tócalas todas</p>
+  <p class="sky-progress" id="skyProgress">0 / 3</p>
+</header>
+
+<!-- Memory card (revealed on star click) -->
+<aside class="memory-card" id="memoryCard" aria-live="polite">
+  <button class="memory-close" id="memoryClose" aria-label="Cerrar recuerdo">&times;</button>
+  <div class="memory-photo-wrap">
+    <img class="memory-photo" id="memoryPhoto" alt="">
+    <div class="memory-placeholder" aria-hidden="true">
+      <i class="fas fa-star"></i>
+    </div>
+  </div>
+  <div class="memory-body">
+    <p class="memory-month" id="memoryMonth"></p>
+    <h2 class="memory-title" id="memoryTitle"></h2>
+    <p class="memory-text" id="memoryText"></p>
+  </div>
+</aside>
+
+<!-- Final message (revealed after all 3 stars) -->
+<div class="final-overlay" id="finalOverlay" aria-hidden="true">
+  <div class="final-inner">
+    <p class="final-pre">Ese cometa que tuve suerte de presenciar…</p>
+    <h2 class="final-title">Tres meses, mi cielo</h2>
+    <p class="final-text">
+      Cada estrellita es un pedacito de lo que somos, y aun así apenas
+      empezamos a escribir nuestra historia. Te amo cada día más, Celes. (gracias por esta cancion moi, bella, me encanta, como me encantas tu mi cushu. Revisa la sección de las Cartas, te escribí un alguito)
+    </p>
+    <p class="final-sign">— Andresito</p>
+    <button class="final-close" id="finalClose">Volver al cielo</button>
+  </div>
+</div>
+
+<!-- Audio (autoplay-friendly after user click) -->
+<audio id="loveSong" src="music/cancion1.mp3" preload="auto"></audio>
+
+<script src="js/constellation.js"></script>
+
+<!-- Navbar toggle (same pattern as other pages) -->
+<script>
+  (function(){
+    var nav = document.querySelector('.topnav');
+    var btn = nav && nav.querySelector('.nav-toggle');
+    if(!nav || !btn) return;
+    function closeMenu(){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    function toggleMenu(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function(e){ e.stopPropagation(); toggleMenu(); });
+    document.addEventListener('click', function(e){ if(!nav.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
+  })();
+</script>
+
+</body>
+</html>

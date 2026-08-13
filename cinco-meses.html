@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cinco Meses · Nosotros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="css/default.css" rel="stylesheet">
+  <link href="css/bouquet.css" rel="stylesheet">
+</head>
+<body class="bouquet-body">
+
+<!-- Navbar (same glass pill) -->
+<nav class="topnav" aria-label="Love links">
+  <a class="brand" href="index.html">
+    <i class="fas fa-heart"></i>
+    <span class="brand-text">Nosotros</span>
+  </a>
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <ul class="nav-links" role="menu">
+    <li role="none">
+      <a role="menuitem" href="https://docs.google.com/document/d/11ZKETegjDiOccuPrBxApuABBQ1uY5K9P7KmQ5RQlVNw/preview" target="_blank" rel="noopener">
+        <i class="fa-regular fa-file-lines"></i> Carta
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://drive.google.com/file/d/1nEUnfbxcU8Oq4KHRehW-aA0pn9-QDT-C/preview" target="_blank" rel="noopener">
+        <i class="fas fa-images"></i> Agosto 7
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="https://open.spotify.com/playlist/6nXJjl27Y1pQsys7QLMxF7?si=19933b83b293488f" target="_blank" rel="noopener">
+        <i class="fas fa-music"></i> Playlist
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="album.html">
+        <i class="fas fa-camera-retro"></i> Un Mes
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="tres-meses.html">
+        <i class="fas fa-star"></i> Tres Meses
+      </a>
+    </li>
+    <li role="none">
+      <a role="menuitem" href="cinco-meses.html" class="nav-current">
+        <i class="fas fa-seedling"></i> Cinco Meses
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<header class="paper-hero">
+  <h1 class="bouquet-title">Cinco meses de nosotros</h1>
+  <p class="hero-note" id="heroHint">toca o arrastra cada flor hasta el florero…</p>
+</header>
+
+<!-- Scene: a garland of tags dangling over the tray + vase -->
+<section class="scene">
+  <div class="garland" id="tagStack" aria-live="polite" aria-label="Razones">
+    <span class="garland-hint">cada flor cuelga una razón escrita a mano…</span>
+  </div>
+
+  <div class="stage">
+  <div class="tray" id="tray" aria-label="Flores para el ramo"></div>
+
+  <div class="vase-zone" id="vaseZone" aria-label="Florero">
+    <div class="vase-flowers" id="vaseFlowers"></div>
+    <div class="ribbon" id="ribbon" aria-hidden="true"></div>
+    <div class="vase-vessel" aria-hidden="true">
+      <svg viewBox="0 0 158 138">
+        <defs>
+          <linearGradient id="vaseGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fbf3df"/>
+            <stop offset="1" stop-color="#e7cfa0"/>
+          </linearGradient>
+        </defs>
+        <!-- mouth -->
+        <ellipse cx="79" cy="16" rx="48" ry="12" fill="#e7cfa0"/>
+        <ellipse cx="79" cy="16" rx="40" ry="8" fill="#cdac74"/>
+        <!-- body (little ceramic pot) -->
+        <path d="M33 18 C 28 62 38 100 54 124 L 104 124 C 120 100 130 62 125 18
+                 C 113 30 45 30 33 18 Z" fill="url(#vaseGrad)" stroke="#c9a870" stroke-width="2"/>
+        <ellipse cx="69" cy="72" rx="10" ry="22" fill="#ffffff" opacity="0.35"/>
+      </svg>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- Final handwritten card (appears in-scene once the bouquet is done) -->
+<div class="final-card" id="finalCard" aria-hidden="true">
+  <p class="final-pre">nuestro ramo está listo…</p>
+  <h2 class="final-title">Cinco meses, mi cielo</h2>
+  <p class="final-text">
+    Cada flor es una razón por la que te amo, y aún así se me quedan miles
+    en el tintero. Gracias por estos cinco meses, moi. Este ramo no se
+    marchita: es tuyo, para siempre.
+  </p>
+  <p class="final-sign">— Andresito</p>
+  <button class="final-close" id="finalClose">volver al ramo</button>
+</div>
+
+<!-- Petal rain layer -->
+<div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+
+<!-- Our song -->
+<audio id="loveSong" src="music/Quiero.mp3" preload="auto"></audio>
+
+<script src="js/bouquet.js"></script>
+
+<!-- Navbar toggle (same pattern as other pages) -->
+<script>
+  (function(){
+    var nav = document.querySelector('.topnav');
+    var btn = nav && nav.querySelector('.nav-toggle');
+    if(!nav || !btn) return;
+    function closeMenu(){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    function toggleMenu(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function(e){ e.stopPropagation(); toggleMenu(); });
+    document.addEventListener('click', function(e){ if(!nav.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
+  })();
+</script>
+
+</body>
+</html>

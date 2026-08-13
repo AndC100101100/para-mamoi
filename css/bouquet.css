@@ -1,0 +1,320 @@
+/* =========================================================
+   bouquet.css — Cinco Meses page ("Ramo de razones")
+   A handmade / paper-craft scene: warm kraft paper, handwritten
+   notes, and a garland of gift-tags that dangle like hanging
+   lights over the flower pot. Deliberately NOT the glassy
+   gradient look of the other pages.
+   ========================================================= */
+
+.bouquet-body {
+  margin: 0;
+  min-height: 100vh;
+  color: #4a3421;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  background-color: #f4ead0;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 42%),
+    radial-gradient(circle at 85% 88%, rgba(210,180,120,.28), transparent 46%),
+    radial-gradient(rgba(120,90,50,.07) 1px, transparent 1px);
+  background-size: auto, auto, 22px 22px;
+  overflow-x: hidden;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.paper-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 88px 20px 4px;
+}
+.bouquet-title {
+  font-size: clamp(40px, 7vw, 68px);
+  font-weight: 700;
+  margin: 0 0 2px;
+  color: #7a4a2b;
+  text-shadow: 1px 2px 0 rgba(255,255,255,.5);
+}
+.hero-note {
+  font-size: clamp(20px, 2.6vw, 26px);
+  color: #9a6b3f;
+  margin: 0;
+  min-height: 1.2em;
+}
+
+/* ── Scene: garland of tags on top, tray + vase below ─────── */
+.scene {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px 70px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* ── The dangling garland of gift-tags ────────────────────── */
+.garland {
+  order: 1;
+  width: 100%;
+  max-width: 1040px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0 20px;
+  min-height: 210px;
+  margin: 0 auto;
+}
+.garland-hint {
+  align-self: center;
+  color: #b08a5a;
+  font-size: 22px;
+  opacity: 0.85;
+  padding-top: 90px;
+}
+
+/* one hanging item = wire segment + string + card */
+.tag-hang {
+  position: relative;
+  padding-top: 34px;
+  opacity: 0;
+  transform: translateY(-26px);
+  transition: opacity 0.4s ease, transform 0.6s cubic-bezier(.22,1.2,.36,1);
+}
+.tag-hang.in { opacity: 1; transform: translateY(0); }
+/* the wire (segments abut into one continuous line across the row) */
+.tag-hang::before {
+  content: "";
+  position: absolute; top: 0; left: -10px; right: -10px; height: 3px;
+  background: linear-gradient(#b98a45, #9a6f34);
+  border-radius: 2px;
+}
+/* the string from wire down to the card */
+.tag-hang::after {
+  content: "";
+  position: absolute; top: 2px; left: 50%; transform: translateX(-50%);
+  width: 2px; height: 34px; background: #a9772f;
+}
+
+.gift-tag {
+  position: relative;
+  box-sizing: border-box;
+  width: 178px;
+  padding: 20px 16px 16px;
+  background: linear-gradient(180deg, #e6cfa0, #ddbf86);
+  border-radius: 6px 14px 8px 12px;
+  box-shadow: 0 10px 20px rgba(90,55,20,.26);
+  transform-origin: top center;
+  animation: tagSway 4.6s ease-in-out infinite;
+  animation-delay: var(--sway-delay, 0s);
+  cursor: pointer;
+}
+/* punched hole where the string meets the tag */
+.gift-tag::before {
+  content: "";
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  width: 11px; height: 11px; border-radius: 50%;
+  background: #f4ead0; box-shadow: inset 0 1px 2px rgba(0,0,0,.35);
+}
+.gift-tag.zoom {
+  animation: none;
+  transform: scale(1.14) rotate(-1deg);
+  z-index: 60;
+  box-shadow: 0 18px 34px rgba(90,55,20,.45);
+}
+.tag-photo-wrap {
+  width: 104px; height: 78px; margin: 8px auto 8px;
+  background: #fff; padding: 5px 5px 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.2);
+  transform: rotate(-3deg);
+}
+.tag-photo-wrap.empty { display: none; }
+.tag-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tag-month {
+  margin: 0; text-align: center;
+  font-size: 19px; color: #8a5a30; letter-spacing: 1px;
+}
+.tag-text {
+  margin: 2px 0 0; text-align: center;
+  font-size: 20px; line-height: 1.12; color: #4a3421;
+}
+
+@keyframes tagSway {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50%      { transform: rotate(2.5deg); }
+}
+
+/* ── Stage row: tray + vase ───────────────────────────────── */
+.stage {
+  order: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px 34px;
+}
+.stage.done .tray { display: none; } /* bouquet centers once it's finished */
+
+/* Tray of pickable flowers — laid on the paper */
+.tray {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  align-content: flex-end;
+  max-width: 300px;
+}
+.tray-flower {
+  position: relative;
+  width: 84px;
+  height: 96px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  touch-action: none;
+  transition: transform 0.16s ease, opacity 0.45s ease;
+}
+.tray-flower svg { width: 68px; height: 68px; display: block; margin: 0 auto; filter: drop-shadow(0 3px 3px rgba(120,80,40,.25)); }
+.tray-label { display: block; font-size: 19px; color: #8a5a30; margin-top: -4px; }
+.tray-flower:hover { transform: translateY(-4px) rotate(-4deg); }
+.tray-flower:focus-visible { outline: 3px dashed #c9803f; outline-offset: 4px; border-radius: 10px; }
+.tray-flower.is-planted { opacity: 0; transform: scale(0.5) rotate(20deg); pointer-events: none; }
+
+/* Ghost that follows the pointer while dragging */
+.flower-ghost {
+  position: fixed; left: 0; top: 0;
+  width: 74px; height: 74px;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  pointer-events: none; z-index: 6000;
+  filter: drop-shadow(0 8px 10px rgba(90,50,20,.4));
+}
+.flower-ghost svg { width: 100%; height: 100%; }
+
+/* ── Vase ─────────────────────────────────────────────────── */
+.vase-zone {
+  position: relative;
+  width: 320px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  border-radius: 20px;
+  transition: background 0.2s ease;
+}
+.vase-zone.drop-hot { background: rgba(160,110,60,.12); box-shadow: inset 0 0 0 2px rgba(160,110,60,.35); }
+
+.vase-flowers {
+  position: relative;
+  width: 100%;
+  height: 210px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.vase-flower {
+  position: absolute;
+  bottom: 0;
+  width: 84px;
+  height: 210px;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--angle, 0deg)) scaleY(0);
+  opacity: 0;
+  transition: transform 0.75s cubic-bezier(.22,1.2,.36,1), opacity 0.4s ease;
+}
+.vase-flower.grown { transform: rotate(var(--angle, 0deg)) scaleY(1); opacity: 1; }
+.vase-flower svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 4px 4px rgba(120,80,40,.22)); }
+
+/* Ribbon bow (finale) tied at the vase neck */
+.ribbon {
+  position: absolute;
+  z-index: 25;
+  bottom: 96px;
+  width: 150px; height: 90px;
+  opacity: 0;
+  transform: scale(0.3) rotate(-8deg);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(.22,1.4,.36,1);
+  pointer-events: none;
+}
+.ribbon.tied { opacity: 1; transform: scale(1) rotate(0); }
+.ribbon svg { width: 100%; height: 100%; }
+
+.vase-vessel {
+  position: relative;
+  z-index: 20;
+  width: 158px;
+  height: 138px;
+  margin-top: -20px;
+}
+
+/* ── Final card (in-scene, not a dark modal) ──────────────── */
+.final-card {
+  position: fixed;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -46%) rotate(-1.5deg) scale(0.9);
+  z-index: 4600;
+  width: min(460px, calc(100vw - 40px));
+  padding: 30px 30px 26px;
+  text-align: center;
+  background: #fffaf0;
+  border: 1px solid #e7d3ab;
+  border-radius: 4px;
+  box-shadow: 0 26px 60px rgba(80,45,15,.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.22,1.2,.36,1);
+}
+.final-card::before {
+  content: "";
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+  width: 120px; height: 26px;
+  background: rgba(210,180,120,.5);
+  box-shadow: 0 2px 4px rgba(0,0,0,.12);
+}
+.final-card.is-visible { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) rotate(-1.5deg) scale(1); }
+.final-pre { font-size: 20px; color: #b07a3a; margin: 0 0 4px; }
+.final-title { font-size: clamp(34px, 6vw, 46px); margin: 0 0 10px; color: #7a4a2b; }
+.final-text { font-size: clamp(20px, 2.4vw, 24px); line-height: 1.35; color: #4a3421; margin: 0 0 12px; }
+.final-sign { font-size: 24px; color: #9a6b3f; margin: 0 0 16px; }
+.final-close {
+  font-family: inherit;
+  font-size: 20px; color: #8a5a30;
+  background: transparent; border: 0;
+  border-bottom: 2px solid #c9a35f;
+  cursor: pointer; padding: 0 2px;
+}
+.final-close:hover { color: #7a4a2b; }
+
+/* ── Petal rain ───────────────────────────────────────────── */
+.petal-layer { position: fixed; inset: 0; pointer-events: none; z-index: 4500; overflow: hidden; }
+.petal {
+  position: absolute; top: -24px;
+  width: 12px; height: 12px;
+  border-radius: 12px 1px 12px 1px;
+  opacity: 0.9;
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes petal-fall {
+  0%   { transform: translate(0, -24px) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.95; }
+  100% { transform: translate(var(--drift, 0), 105vh) rotate(540deg); opacity: 0.9; }
+}
+
+/* ── Small screens ────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .gift-tag { width: 150px; }
+  .tag-photo-wrap { width: 92px; height: 68px; }
+  .stage { flex-direction: column; align-items: center; gap: 16px; }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .vase-flower { transition: opacity 0.3s ease; transform: rotate(var(--angle,0deg)) scaleY(1); }
+  .gift-tag { animation: none; }
+  .tag-hang, .final-card, .ribbon { transition: opacity 0.2s ease; }
+}

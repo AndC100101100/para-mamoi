@@ -54,6 +54,11 @@
         <i class="fas fa-star"></i> Tres Meses
       </a>
     </li>
+    <li role="none">
+      <a role="menuitem" href="cinco-meses.html">
+        <i class="fas fa-seedling"></i> Cinco Meses
+      </a>
+    </li>
   </ul>
 </nav>
 
@@ -131,6 +136,18 @@
 		</div>
 		</div>
 
+		<!-- 5-month surprise -->
+		<button id="fiveBtn"><i class="fas fa-seedling"></i> Feliz 5 meses, moi</button>
+		<div id="fiveOverlay">
+			<div class="five-card">
+				<h2>Cinco meses 🌹</h2>
+				<p>Te hice un ramo, cielo… pero lo tienes que armar tú. ¿Vamos?</p>
+				<a class="five-go" href="cinco-meses.html">Armar nuestro ramo</a>
+				<button class="five-skip" id="fiveSkip">ahora no</button>
+			</div>
+		</div>
+		<div id="fivePetals" aria-hidden="true"></div>
+
 </div>
 
 
@@ -186,6 +203,46 @@ if (!document.createElement('canvas').getContext) {
     btn.addEventListener('click', function(e){ e.stopPropagation(); toggleMenu(); });
     document.addEventListener('click', function(e){ if(!nav.contains(e.target)) closeMenu(); });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
+  })();
+</script>
+
+<!-- 5-month surprise: petal rain + gentle invite to the bouquet page -->
+<script>
+  (function(){
+    var btn = document.getElementById('fiveBtn');
+    var overlay = document.getElementById('fiveOverlay');
+    var skip = document.getElementById('fiveSkip');
+    var layer = document.getElementById('fivePetals');
+    if(!btn || !overlay || !layer) return;
+
+    var colors = ['#ff6f91','#ff9bb3','#c86dd7','#ff7eb3','#ff5c8c'];
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function rain(){
+      if(reduce) return;
+      for(var i=0;i<40;i++){
+        (function(i){
+          var p = document.createElement('span');
+          p.className = 'petal';
+          p.style.left = (Math.random()*100)+'vw';
+          p.style.background = colors[i%colors.length];
+          var dur = 4 + Math.random()*4, delay = Math.random()*2.5;
+          p.style.animationDuration = dur+'s';
+          p.style.animationDelay = delay+'s';
+          p.style.setProperty('--drift', (Math.random()*160-80)+'px');
+          layer.appendChild(p);
+          setTimeout(function(){ p.remove(); }, (dur+delay)*1000+200);
+        })(i);
+      }
+    }
+
+    btn.addEventListener('click', function(){
+      rain();
+      setTimeout(function(){ overlay.classList.add('is-visible'); }, 450);
+    });
+    if(skip) skip.addEventListener('click', function(){ overlay.classList.remove('is-visible'); });
+    overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.classList.remove('is-visible'); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') overlay.classList.remove('is-visible'); });
   })();
 </script>
 
